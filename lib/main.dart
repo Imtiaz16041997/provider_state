@@ -24,13 +24,36 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => CountProvider()),
         ChangeNotifierProvider(create: (context) => ContainerProvider()),
         ChangeNotifierProvider(create: (context) => FavouriteProvider()),
-        ChangeNotifierProvider(create: (context) => DynamicThemeProvider()),
+        ChangeNotifierProvider(create: (context) => DynamicThemeChangerProvider()),
       ],
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),),
-        home:  DynamicThemeScreen(),
-      ),
+      child: Builder(builder: (BuildContext context){
+        final themeChanger = Provider.of<DynamicThemeChangerProvider>(context);
+        return MaterialApp(
+          title: 'Flutter Demo',
+          themeMode: themeChanger.themeMode,
+          theme: ThemeData(
+            useMaterial3: false,
+            brightness: Brightness.light,
+            primarySwatch: Colors.red,
+            appBarTheme: AppBarTheme(
+            backgroundColor: Colors.purple,
+            actionsIconTheme: IconThemeData(color: Colors.red),
+            ),
+          ),
+          darkTheme: ThemeData(
+              useMaterial3: false,
+            brightness: Brightness.dark,
+            primarySwatch: Colors.purple,
+            primaryColor: Colors.purple,
+            appBarTheme: AppBarTheme(
+              backgroundColor: Colors.teal,
+              actionsIconTheme: IconThemeData(color: Colors.purple),
+            ),
+          ),
+          home:  DynamicThemeScreen(),
+        );
+      }),
+      
     );
   }
 }
