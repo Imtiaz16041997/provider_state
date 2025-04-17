@@ -37,7 +37,6 @@ class _FavouriteListViewState extends State<FavouriteListView> {
                         }else {
                           value.addItem(item);
                         }
-
                       },
                       title: Text('Item '+item.toString()),
                       trailing: (value.selectedItem.contains(item) ? Icon(Icons.favorite) : Icon(Icons.favorite_border_outlined)),
