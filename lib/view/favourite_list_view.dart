@@ -15,6 +15,7 @@ class FavouriteListView extends StatefulWidget {
 class _FavouriteListViewState extends State<FavouriteListView> {
   @override
   Widget build(BuildContext context) {
+
     final favouriteProvider = Provider.of<FavouriteProvider>(context);
     return Scaffold(
       appBar: AppBar(
@@ -27,18 +28,19 @@ class _FavouriteListViewState extends State<FavouriteListView> {
             child: ListView.builder(
                 itemCount: favouriteProvider.selectedItem.length,
                 itemBuilder: (context,index){
+                  final item = favouriteProvider.selectedItem[index];
                   return Consumer<FavouriteProvider>(builder: (context,value,child){
                     return  ListTile(
                       onTap: (){
-                        if(value.selectedItem.contains(index)){
-                          value.removeItem(index);
+                        if(value.selectedItem.contains(item)){
+                          value.removeItem(item);
                         }else {
-                          value.addItem(index);
+                          value.addItem(item);
                         }
 
                       },
-                      title: Text('Item '+index.toString()),
-                      trailing: (value.selectedItem.contains(index) ? Icon(Icons.favorite) : Icon(Icons.favorite_border_outlined)),
+                      title: Text('Item '+item.toString()),
+                      trailing: (value.selectedItem.contains(item) ? Icon(Icons.favorite) : Icon(Icons.favorite_border_outlined)),
                     );
                   });
                 }),
