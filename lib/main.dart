@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider_state/provider/container_provider.dart';
 import 'package:provider_state/provider/count_provider.dart';
+import 'package:provider_state/provider/dynamic_theme_provider.dart';
 import 'package:provider_state/provider/favourite_provider.dart';
 import 'package:provider_state/view/another_screen.dart';
+import 'package:provider_state/view/dynamic_theme_screen.dart';
 import 'package:provider_state/view/favourite_screen.dart';
 import 'package:provider_state/view/home_view.dart';
 
@@ -22,11 +24,12 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => CountProvider()),
         ChangeNotifierProvider(create: (context) => ContainerProvider()),
         ChangeNotifierProvider(create: (context) => FavouriteProvider()),
+        ChangeNotifierProvider(create: (context) => DynamicThemeProvider()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),),
-        home:  FavouriteView(),
+        home:  DynamicThemeScreen(),
       ),
     );
   }
