@@ -7,6 +7,7 @@ import 'package:provider_state/view/another_screen.dart';
 import 'package:provider_state/view/favourite_screen.dart';
 import 'package:provider_state/view/home_view.dart';
 import 'package:provider_state/view/stateless/notify_listener_screen.dart';
+import 'package:provider_state/view/stateless/notify_listener_screen_two.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),),
-        home:  NotifyListenerScreen(),
+        home:  NotifyListenerScreenTwo(),
       ),
     );
   }
