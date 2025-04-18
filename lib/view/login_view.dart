@@ -15,12 +15,19 @@ class LoginView extends StatefulWidget {
 class _LoginViewState extends State<LoginView> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  ValueNotifier<bool> toggle = ValueNotifier<bool>(false);
+  //ValueNotifier<bool> toggle = ValueNotifier<bool>(false);
 
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
+    final visibilityProvider = Provider.of<PasswordVisibilityProvider>(context,listen:false);
     return Scaffold(
       appBar: AppBar(
         title: Text('Login Screen'),
@@ -51,7 +58,9 @@ class _LoginViewState extends State<LoginView> {
                     hintText: 'Password',
                     border: const OutlineInputBorder(),
                     suffix: InkWell(
-                      onTap: visibilityProvider.toggleVisibility,
+                      onTap: () {
+                        visibilityProvider.toggleVisibility();
+                      },
                       child: Icon(
                         visibilityProvider.isVisible
                             ? Icons.visibility_off_outlined
