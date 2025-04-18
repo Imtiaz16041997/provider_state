@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider_state/provider/auth_login_provider.dart';
 
+import '../provider/password_visibility_provider.dart';
+
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
 
@@ -40,7 +42,27 @@ class _LoginViewState extends State<LoginView> {
               ),
             ),
             SizedBox(height: 20,),
-           ValueListenableBuilder(valueListenable: toggle, builder: (context,value,child){
+            Consumer<PasswordVisibilityProvider>(
+              builder: (context, visibilityProvider, child) {
+                return TextFormField(
+                  obscureText: !visibilityProvider.isVisible,
+                  controller: passwordController,
+                  decoration: InputDecoration(
+                    hintText: 'Password',
+                    border: const OutlineInputBorder(),
+                    suffix: InkWell(
+                      onTap: visibilityProvider.toggleVisibility,
+                      child: Icon(
+                        visibilityProvider.isVisible
+                            ? Icons.visibility_off_outlined
+                            : Icons.visibility,
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+           /*ValueListenableBuilder(valueListenable: toggle, builder: (context,value,child){
            return  TextFormField(
                obscureText: toggle.value,
                controller: passwordController,
@@ -54,7 +76,7 @@ class _LoginViewState extends State<LoginView> {
                  border: OutlineInputBorder(),
                ),
              );
-           }),
+           }),*/
             SizedBox(height: 50,),
             InkWell(
               onTap: (){
