@@ -13,7 +13,7 @@ class LoginView extends StatefulWidget {
 class _LoginViewState extends State<LoginView> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-
+  ValueNotifier<bool> toggle = ValueNotifier<bool>(false);
 
 
   @override
@@ -40,14 +40,21 @@ class _LoginViewState extends State<LoginView> {
               ),
             ),
             SizedBox(height: 20,),
-            TextFormField(
-              obscureText: true,
-              controller: passwordController,
-              decoration: InputDecoration(
-                hintText: 'Password',
-                border: OutlineInputBorder(),
-              ),
-            ),
+           ValueListenableBuilder(valueListenable: toggle, builder: (context,value,child){
+           return  TextFormField(
+               obscureText: toggle.value,
+               controller: passwordController,
+               decoration: InputDecoration(
+                 hintText: 'Password',
+                 suffix: InkWell(
+                   onTap: (){
+                     toggle.value = !toggle.value;
+                   },
+                     child: Icon(toggle.value ? Icons.visibility_off_outlined : Icons.visibility)),
+                 border: OutlineInputBorder(),
+               ),
+             );
+           }),
             SizedBox(height: 50,),
             InkWell(
               onTap: (){
