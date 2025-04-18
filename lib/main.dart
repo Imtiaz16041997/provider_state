@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:provider_state/provider/auth_login_provider.dart';
 import 'package:provider_state/provider/container_provider.dart';
 import 'package:provider_state/provider/count_provider.dart';
 import 'package:provider_state/provider/dynamic_theme_provider.dart';
@@ -8,6 +9,7 @@ import 'package:provider_state/view/another_screen.dart';
 import 'package:provider_state/view/dynamic_theme_screen.dart';
 import 'package:provider_state/view/favourite_screen.dart';
 import 'package:provider_state/view/home_view.dart';
+import 'package:provider_state/view/login_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,6 +27,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => ContainerProvider()),
         ChangeNotifierProvider(create: (context) => FavouriteProvider()),
         ChangeNotifierProvider(create: (context) => DynamicThemeChangerProvider()),
+        ChangeNotifierProvider(create: (context) => AuthProvider()),
       ],
       child: Builder(builder: (BuildContext context){
         final themeChanger = Provider.of<DynamicThemeChangerProvider>(context);
@@ -50,7 +53,7 @@ class MyApp extends StatelessWidget {
               actionsIconTheme: IconThemeData(color: Colors.purple),
             ),
           ),
-          home:  DynamicThemeScreen(),
+          home:  LoginView(),
         );
       }),
       
