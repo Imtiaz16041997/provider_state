@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:provider_state/utils/routes/routes.dart';
+import 'package:provider_state/utils/routes/routes_name.dart';
+import 'package:provider_state/view/login_screen.dart';
 
 
 void main() {
@@ -12,7 +15,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return MaterialApp(
+      title: 'Flutter Provider Login',
+      theme: ThemeData(
+        primarySwatch: Colors.amber
+      ),
+      initialRoute: RoutesName.loginScreen,
+      onGenerateRoute: AppRoutes.generateRoute,
+    );
   }
 }
 
