@@ -6,7 +6,9 @@ import 'package:fluttertoast/fluttertoast.dart';
 import '../res/colors/colors.dart';
 
 class Utils {
-  static void filedFocusChange(BuildContext context, FocusNode current,
+  static void filedFocusChange(
+      BuildContext context,
+      FocusNode current,
       FocusNode nextFocus) {
     current.unfocus();
     FocusScope.of(context).requestFocus(nextFocus);
