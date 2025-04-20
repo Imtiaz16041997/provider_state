@@ -21,6 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height *1 ;
     //final visibilityProvider = Provider.of<PasswordVisibilityProvider>(context,listen:false);
     return Scaffold(
       appBar: AppBar(
@@ -53,7 +54,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       border: OutlineInputBorder()
                   ),
                 ),
-
                 SizedBox(height: 20,),
                 Consumer<PasswordVisibilityProvider>(
                   builder: (context, value, child) {
@@ -78,6 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     );
                   },
                 ),
+                SizedBox(height: height * .1,)
 
               ],
             ),
