@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:provider_state/components/round_button_component.dart';
 import 'package:provider_state/utils/utils.dart';
 import '../provider/password_visibility_provider.dart';
 import '../res/colors/colors.dart';
@@ -20,12 +21,22 @@ class _LoginScreenState extends State<LoginScreen> {
   FocusNode passwordFocusNode = FocusNode();
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    emailFocusNode.dispose();
+    passwordFocusNode.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height *1 ;
     //final visibilityProvider = Provider.of<PasswordVisibilityProvider>(context,listen:false);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColor.redColor,
+        backgroundColor: AppColor.primaryBtnColor,
         centerTitle: true,
         automaticallyImplyLeading: false,
         title: Text('Login'),
@@ -78,13 +89,21 @@ class _LoginScreenState extends State<LoginScreen> {
                     );
                   },
                 ),
-                SizedBox(height: height * .1,)
-
+                SizedBox(height: height * .085,),
+                RoundButtonComponent(width: 300,title: 'Login', onPress: () {
+                  if(_emailController.text.isEmpty){
+                    Utils.flushBarErrorMessage('Please Enter email', context);
+                  }else if(_passwordController.text.isEmpty){
+                    Utils.flushBarErrorMessage('Please Enter password', context);
+                  }
+                  else if(_passwordController.text.length < 6){
+                    Utils.flushBarErrorMessage('Please Enter 6 digit password', context);
+                  } else {
+                        print('api hit');
+                  }
+                },),
               ],
             ),
-            SizedBox(height: 40,),
-
-
           ],
         ),
       ),
