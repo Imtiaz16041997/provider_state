@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider_state/components/round_button_component.dart';
 import 'package:provider_state/utils/utils.dart';
+import 'package:provider_state/view_model/auth_view_model.dart';
 import '../provider/password_visibility_provider.dart';
 import '../res/colors/colors.dart';
 
@@ -32,6 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final authViewModel = Provider.of<AuthViewModelProvider>(context);
     final height = MediaQuery.of(context).size.height *1 ;
     //final visibilityProvider = Provider.of<PasswordVisibilityProvider>(context,listen:false);
     return Scaffold(
@@ -99,6 +101,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   else if(_passwordController.text.length < 6){
                     Utils.flushBarErrorMessage('Please Enter 6 digit password', context);
                   } else {
+                    Map data = {
+                      'email' : _emailController.text.toString(),
+                      'password' : _passwordController.text.toString()
+                    };
+                    authViewModel.loginApi(data,context);
                         print('api hit');
                   }
                 },),

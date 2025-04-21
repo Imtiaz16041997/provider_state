@@ -10,9 +10,6 @@ import '../app_exception.dart';
 
 class NetWorkApiServices extends BaseApiServices{
 
-
-
-
   @override
   Future fetchGetApiResponse(String url) async {
     if(kDebugMode ){
@@ -23,7 +20,7 @@ class NetWorkApiServices extends BaseApiServices{
       final response = await get(Uri.parse(url)).timeout(Duration(seconds: 10));
       responseJson = returnResponse(response);
     }on SocketException{
-      throw InternetException('No Internet Connection');
+      throw InternetException('');
     }on RequestTimeOutException {
       throw RequestTimeOutException('');
     }
@@ -45,7 +42,7 @@ class NetWorkApiServices extends BaseApiServices{
       ).timeout(Duration(seconds: 10));
       responseJson = returnResponse(response);
     }on SocketException{
-      throw InternetException('No Internet Connection');
+      throw InternetException('');
     }on RequestTimeOutException {
       throw RequestTimeOutException('');
     }

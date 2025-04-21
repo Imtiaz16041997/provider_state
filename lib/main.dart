@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:provider_state/provider/password_visibility_provider.dart';
 import 'package:provider_state/utils/routes/routes.dart';
 import 'package:provider_state/utils/routes/routes_name.dart';
+import 'package:provider_state/view_model/auth_view_model.dart';
 
 
 void main() {
@@ -18,7 +19,8 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
 
       providers: [
-      ChangeNotifierProvider(create: (context) => PasswordVisibilityProvider())
+      ChangeNotifierProvider(create: (context) => PasswordVisibilityProvider()),
+      ChangeNotifierProvider(create: (context) => AuthViewModelProvider()),
 
     ],
     child: MaterialApp(

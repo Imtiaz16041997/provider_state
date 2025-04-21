@@ -13,7 +13,7 @@ class AppException implements Exception{
 }
 
 class InternetException extends AppException {
-  InternetException([String? message]) : super(message,'No Internet');
+  InternetException([String? message]) : super(message,'No Internet Connection');
 }
 
 class RequestTimeOutException extends AppException {
