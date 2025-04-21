@@ -18,7 +18,6 @@ class UserViewModel with ChangeNotifier {
   Future<UserModel?> getUser() async {
     final SharedPreferences sp = await SharedPreferences.getInstance();
     final String? token = sp.getString('token');
-
     return UserModel(
       token: token.toString()
     );
@@ -38,7 +37,7 @@ class UserViewModel with ChangeNotifier {
 
   Future<bool> removeUser() async {
     SharedPreferences sp = await SharedPreferences.getInstance();
-    sp.clear();
+    sp.remove('token');
     return true;
   }
 }
