@@ -92,7 +92,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                 ),
                 SizedBox(height: height * .085,),
-                RoundButtonComponent(width: 300,title: 'Login', onPress: () {
+                RoundButtonComponent(
+                  loading: authViewModel.loading,
+                  width: 300,title: 'Login',
+                  onPress: () {
                   if(_emailController.text.isEmpty){
                     Utils.flushBarErrorMessage('Please Enter email', context);
                   }else if(_passwordController.text.isEmpty){
