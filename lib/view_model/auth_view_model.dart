@@ -2,6 +2,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider_state/repository/auth_repository.dart';
+import 'package:provider_state/utils/routes/routes_name.dart';
 import 'package:provider_state/utils/utils.dart';
 
 class AuthViewModelProvider with ChangeNotifier {
@@ -21,6 +22,7 @@ class AuthViewModelProvider with ChangeNotifier {
       dynamic result = await _myRepo.loginApi(data).then((value){
         setLoading(false);
         Utils.flushBarErrorMessage('Login Successfully', context);
+        Navigator.pushNamed(context, RoutesName.homeScreen);
         if (kDebugMode) {
           print(value);
         }
