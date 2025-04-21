@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider_state/utils/routes/routes_name.dart';
 import 'package:provider_state/view/home_screen.dart';
 import 'package:provider_state/view/login_screen.dart';
+import 'package:provider_state/view/sign_up_screen.dart';
 
 class AppRoutes {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -16,6 +17,12 @@ class AppRoutes {
         return MaterialPageRoute(
           builder: (BuildContext context) => LoginScreen(),
         );
+
+      case RoutesName.signUpScreen:
+        return MaterialPageRoute(
+          builder: (BuildContext context) => SignUpScreen(),
+        );
+
 
       default:
         return MaterialPageRoute(

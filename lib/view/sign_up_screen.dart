@@ -1,21 +1,22 @@
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:provider_state/components/round_button_component.dart';
-import 'package:provider_state/utils/utils.dart';
-import 'package:provider_state/view_model/auth_view_model.dart';
+
+import '../components/round_button_component.dart';
 import '../provider/password_visibility_provider.dart';
 import '../res/colors/colors.dart';
 import '../utils/routes/routes_name.dart';
+import '../utils/utils.dart';
+import '../view_model/auth_view_model.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
+
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
 
@@ -41,8 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
       appBar: AppBar(
         backgroundColor: AppColor.primaryBtnColor,
         centerTitle: true,
-        automaticallyImplyLeading: false,
-        title: Text('Login'),
+        title: Text('Sign Up'),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -94,34 +94,34 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 SizedBox(height: height * .085,),
                 RoundButtonComponent(
-                  loading: authViewModel.loading,
-                  width: 300,title: 'Login',
+                  loading: authViewModel.signUpLoading,
+                  width: 300,title: 'Sign Up',
                   onPress: () {
-                  if(_emailController.text.isEmpty){
-                    Utils.flushBarErrorMessage('Please Enter email', context);
-                  }else if(_passwordController.text.isEmpty){
-                    Utils.flushBarErrorMessage('Please Enter password', context);
-                  }
-                  else if(_passwordController.text.length < 6){
-                    Utils.flushBarErrorMessage('Please Enter 6 digit password', context);
-                  } else {
-                    Map data = {
-                      'email' : _emailController.text.toString(),
-                      'password' : _passwordController.text.toString()
-                    };
-                    authViewModel.loginApi(data,context);
-                        print('api hit');
-                  }
-                },),
+                    if(_emailController.text.isEmpty){
+                      Utils.flushBarErrorMessage('Please Enter email', context);
+                    }else if(_passwordController.text.isEmpty){
+                      Utils.flushBarErrorMessage('Please Enter password', context);
+                    }
+                    else if(_passwordController.text.length < 6){
+                      Utils.flushBarErrorMessage('Please Enter 6 digit password', context);
+                    } else {
+                      Map data = {
+                        'email' : _emailController.text.toString(),
+                        'password' : _passwordController.text.toString()
+                      };
+                      authViewModel.signUpApi(data,context);
+                      print('api hit');
+                    }
+                  },),
                 SizedBox(height: height * .02,),
                 InkWell(
                   splashColor: Colors.transparent,
                   hoverColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onTap: (){
-                    Navigator.pushNamed(context, RoutesName.signUpScreen);
+                    Navigator.pushNamed(context, RoutesName.loginScreen);
                   },
-                  child: Text("Don't have an account? Sign Up"),
+                  child: Text("Already have an account? Login"),
                 )
               ],
             ),
@@ -133,28 +133,3 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 }
 
-
-
-
-
-
-
-// class _LoginScreenState extends State<LoginScreen> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: Center(
-//         child: InkWell(
-//           onTap: (){
-//             //Utils.snackBar('No Internet Connection', context);
-//             //Utils.flushBarErrorMessage('No Internet Connection', context);
-//             //Utils.toastMessage('No Internet Connection');
-//             Navigator.pushNamed(context, RoutesName.homeScreen);
-//             //Navigator.push(context,MaterialPageRoute(builder:(context) => HomeScreen()));
-//           },
-//           child: Text('Navigate to Next'),
-//         ),
-//       ),
-//     );
-//   }
-// }
