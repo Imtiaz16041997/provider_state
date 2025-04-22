@@ -10,13 +10,13 @@ class SplashServices {
   Future<UserModel?> getUserData() => UserViewModel().getUser();
 
   void checkAuthentication (BuildContext context ) async {
-    getUserData().then((value){
+    getUserData().then((value) async {
       print(value?.token);
-      if(value!.token == 'null' || value!.token == ''){
-        Future.delayed(Duration(seconds: 30));
+      if(value?.token.toString() == 'null' || value?.token.toString() == ''){
+        await Future.delayed(Duration(seconds: 3));
         Navigator.pushNamed(context, RoutesName.loginScreen);
       }else {
-        Future.delayed(Duration(seconds: 30));
+        await Future.delayed(Duration(seconds: 3));
         Navigator.pushNamed(context, RoutesName.homeScreen);
       }
 

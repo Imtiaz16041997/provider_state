@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:provider_state/view_model/services/splash_services.dart';
+
+import '../view_model/services/splash_services.dart';
+
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -13,7 +15,6 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     splashServices.checkAuthentication(context);
   }

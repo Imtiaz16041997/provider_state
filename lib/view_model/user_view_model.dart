@@ -10,7 +10,7 @@ class UserViewModel with ChangeNotifier {
   Future<bool> saveUser(UserModel userResponse) async {
     final SharedPreferences sp = await SharedPreferences.getInstance();
     //String userJson = jsonEncode(userResponse.toJson());
-     sp.setString('user', userResponse.token.toString());
+     sp.setString('token', userResponse.token.toString());
      notifyListeners();
     return true;
   }
