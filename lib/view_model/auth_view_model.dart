@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:provider_state/repository/auth_repository.dart';
 import 'package:provider_state/utils/routes/routes_name.dart';
 import 'package:provider_state/utils/utils.dart';
-import 'package:provider_state/view_model/user_view_model.dart';
+import 'package:provider_state/view_model/user_preferences_view_model.dart';
 
 import '../models/user_model.dart';
 
@@ -33,7 +33,7 @@ class AuthViewModelProvider with ChangeNotifier {
     try {
       dynamic result = await _myRepo.loginApi(data).then((value){
         setLoading(false);
-        final userPreference = Provider.of<UserViewModel>(context,listen: false);
+        final userPreference = Provider.of<UserPreferencesViewModel>(context,listen: false);
         userPreference.saveUser(
           UserModel(
             token: value['token'].toString()

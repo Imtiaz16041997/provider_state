@@ -2,12 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:provider_state/models/user_model.dart';
 import 'package:provider_state/utils/routes/routes_name.dart';
-import 'package:provider_state/view_model/user_view_model.dart';
+import 'package:provider_state/view_model/user_preferences_view_model.dart';
 
 import '../../utils/utils.dart';
 
 class SplashServices {
-  Future<UserModel?> getUserData() => UserViewModel().getUser();
+  Future<UserModel?> getUserData() => UserPreferencesViewModel().getUser();
 
   void checkAuthentication (BuildContext context ) async {
     getUserData().then((value) async {
