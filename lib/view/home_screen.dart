@@ -5,6 +5,7 @@ import 'package:provider_state/view_model/home_view_model.dart';
 import 'package:provider_state/view_model/user_preferences_view_model.dart';
 
 import '../data/response/status.dart';
+import '../utils/utils.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -29,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
     
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.red,
+        backgroundColor: Colors.amberAccent,
         automaticallyImplyLeading: false,
         actions: [
           InkWell(
@@ -55,22 +56,33 @@ class _HomeScreenState extends State<HomeScreen> {
                 itemCount: value.movieList.data?.movies?.length,
                   itemBuilder: (context,index){
                     return Card(
-                      color: Colors.amberAccent,
+                      color: Colors.green,
                       child: ListTile(
-                        leading: CircleAvatar(
-                          backgroundImage: NetworkImage(
-                              value.movieList!.data!.movies![index].posterurl.toString(),
-                          ),
+                        leading: Image.network(
+                          value.movieList!.data!.movies![index].posterurl.toString(),
+                          errorBuilder: (context,error,stack){
+                            return Icon(Icons.error,color: Colors.red,);
+                          },
+                          height: 40,
+                          width: 40,
+                          fit: BoxFit.cover,
                         ),
                         title: Text(value.movieList!.data!.movies![index].title.toString()),
                         subtitle: Text(value.movieList!.data!.movies![index].storyline.toString()),
+                        trailing: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(Utils.setAverageRating(value.movieList!.data!.movies![index].ratings!).toString()),
+                            Icon(Icons.star,color: Colors.yellowAccent,)
+                          ],
+                        ),
                       
                       ),
                     );
                   }
               );
             case Status.ERROR:
-            return Text(value.movieList.message.toString());
+            return Center(child: Text(value.movieList.message.toString(),style: TextStyle(color: Colors.white),));
 
             default:
               return Text('Unknown state');
