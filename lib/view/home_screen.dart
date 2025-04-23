@@ -29,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
     
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.red,
         automaticallyImplyLeading: false,
         actions: [
           InkWell(
@@ -42,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
           )
         ],
       ),
-      backgroundColor: Colors.amber,
+      backgroundColor: Colors.black,
       body: ChangeNotifierProvider<HomeViewModel>(
         create: (BuildContext context) => homeViewModel,
         child: Consumer<HomeViewModel>(
@@ -54,13 +54,18 @@ class _HomeScreenState extends State<HomeScreen> {
               return ListView.builder(
                 itemCount: value.movieList.data?.movies?.length,
                   itemBuilder: (context,index){
-                    return ListTile(
-                      leading: CircleAvatar(
-                        backgroundImage: NetworkImage(value.movieList!.data!.movies![index].posterurl.toString()),
+                    return Card(
+                      color: Colors.amberAccent,
+                      child: ListTile(
+                        leading: CircleAvatar(
+                          backgroundImage: NetworkImage(
+                              value.movieList!.data!.movies![index].posterurl.toString(),
+                          ),
+                        ),
+                        title: Text(value.movieList!.data!.movies![index].title.toString()),
+                        subtitle: Text(value.movieList!.data!.movies![index].storyline.toString()),
+                      
                       ),
-                      title: Text(value.movieList!.data!.movies![index].title.toString()),
-                      subtitle: Text(value.movieList!.data!.movies![index].storyline.toString()),
-
                     );
                   }
               );
@@ -70,8 +75,6 @@ class _HomeScreenState extends State<HomeScreen> {
             default:
               return Text('Unknown state');
           }
-          return Container();
-
         }),
       ),
     );
