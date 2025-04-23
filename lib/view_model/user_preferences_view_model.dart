@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/user_model.dart';
 
-class UserViewModel with ChangeNotifier {
+class UserPreferencesViewModel with ChangeNotifier {
 
   Future<bool> saveUser(UserModel userResponse) async {
     final SharedPreferences sp = await SharedPreferences.getInstance();

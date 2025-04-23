@@ -4,7 +4,7 @@ import 'package:provider_state/provider/password_visibility_provider.dart';
 import 'package:provider_state/utils/routes/routes.dart';
 import 'package:provider_state/utils/routes/routes_name.dart';
 import 'package:provider_state/view_model/auth_view_model.dart';
-import 'package:provider_state/view_model/user_view_model.dart';
+import 'package:provider_state/view_model/user_preferences_view_model.dart';
 
 
 void main() {
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       providers: [
       ChangeNotifierProvider(create: (context) => PasswordVisibilityProvider()),
       ChangeNotifierProvider(create: (context) => AuthViewModelProvider()),
-      ChangeNotifierProvider(create: (context) => UserViewModel()),
+      ChangeNotifierProvider(create: (context) => UserPreferencesViewModel()),
 
     ],
     child: MaterialApp(
